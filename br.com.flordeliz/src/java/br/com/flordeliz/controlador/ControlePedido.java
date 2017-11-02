@@ -10,10 +10,16 @@ import br.com.flordeliz.dao.ItemEstoqueDAO;
 import br.com.flordeliz.dao.PedidoDAO;
 import br.com.flordeliz.modelo.Cliente;
 import br.com.flordeliz.modelo.EntidadeNulaException;
+import br.com.flordeliz.modelo.Entrega;
+import br.com.flordeliz.modelo.InsercaoException;
+import br.com.flordeliz.modelo.ItemEntrega;
 import br.com.flordeliz.modelo.ItemEstoque;
+import br.com.flordeliz.modelo.ItemPedido;
 import br.com.flordeliz.modelo.Pedido;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,14 +60,16 @@ public class ControlePedido extends HttpServlet implements InterfaceControle{
             request.setAttribute("listaPedidos", lista);
             resultadoOperacao = this.LISTAR_PEDIDOS;
             
-            
         } else if (acao.equals("inserir")){
             List<ItemEstoque> listaItensEstoque = this.consultarItensEstoque();
             request.setAttribute("listaItensEstoque", listaItensEstoque);
             
             List<Cliente> listaClientes = this.consultarClientes();
-            request.setAttribute("listaItensEstoque", listaClientes);
+            request.setAttribute("listaClientes", listaClientes);
             resultadoOperacao = this.INSERIR_PEDIDO;
+            
+        } else if (acao.equals("incluir")){
+            resultadoOperacao = this.inserirPedido(request, response);
             
             
         } else if(acao.equals("detalhar")){
@@ -169,11 +177,63 @@ public class ControlePedido extends HttpServlet implements InterfaceControle{
         return "Short description";
     }// </editor-fold>
     
+    protected int inserirPedido(HttpServletRequest request, HttpServletResponse response){
+        ClienteDAO clienteDAO = new ClienteDAO();
+        ItemEstoqueDAO itemEstoqueDAO = new ItemEstoqueDAO();
+        PedidoDAO pedidoDAO = new PedidoDAO();
+        Pedido pedido;
+        Entrega entrega;
+        Cliente cliente = null;
+        
+        int resultadoOperacao = 0;
+        int clienteCodigo = Integer.parseInt(request.getParameter("cliente_codigo"));
+        float descontoPorcent = Float.parseFloat(request.getParameter("desconto"));
+        
+        String [] listaItemEstoqueCodigos = request.getParameterValues("item_estoque_codigo[]");
+        String [] quantidadesItens = request.getParameterValues("quantidade_item[]");
+        
+        try {
+            cliente = clienteDAO.buscar(this.usuario, this.senha, this.endereco, clienteCodigo);        
+        
+            pedido = new Pedido(0,descontoPorcent,cliente);
+            entrega = new Entrega(0, Entrega.PENDENTE);
+            pedido.setEntrega(entrega);
+
+            int indiceItens = 0;
+            for (String codigo : listaItemEstoqueCodigos){
+                ItemEstoque itemEstoque = itemEstoqueDAO.buscar(this.usuario, this.senha, this.endereco, Integer.parseInt(codigo));                
+                int quantidadeItemAtual = Integer.parseInt(quantidadesItens[indiceItens]);                
+                ItemPedido itemPedido = new ItemPedido(indiceItens + 1, quantidadeItemAtual, itemEstoque);                
+                ItemEntrega itemEntrega = new ItemEntrega(indiceItens + 1, quantidadeItemAtual, itemEstoque);                
+                pedido.inserirItem(itemPedido);                
+                pedido.getEntrega().inserirItem(itemEntrega);                
+                indiceItens ++;
+            }
+
+            resultadoOperacao = pedidoDAO.inserir(usuario, senha, endereco, pedido);
+            return resultadoOperacao;
+        
+        } catch (EntidadeNulaException ex) {
+            Logger.getLogger(ControlePedido.class.getName()).log(Level.SEVERE, null, ex);
+            /*TODO Considerar Criar indicativo de Entidade nula ERRO_NULL_EXCEPTION
+            */
+            
+            Logger.getLogger("Entidade Nula Exception: ControlePedido.incluirPedido()");
+            return PedidoDAO.ERRO_INSERCAO;
+            
+        } catch (InsercaoException ex) {
+            //System.out.print("Insercao Exception");
+            Logger.getLogger("Insercao Exception: ControlePedido.incluirPedido()");
+            
+            return PedidoDAO.ERRO_INSERCAO;
+        }
+    }
+    
     protected List<Pedido> consultarPedidos(){
         PedidoDAO pedidoDAO = new PedidoDAO();
         return pedidoDAO.consultar(usuario, senha, endereco);
     }
-
+    
     protected Pedido buscarPedido(HttpServletRequest request) throws EntidadeNulaException{
         int pedidoCodigo = Integer.parseInt(request.getParameter("pedido_codigo"));
         PedidoDAO pedidoDAO = new PedidoDAO();

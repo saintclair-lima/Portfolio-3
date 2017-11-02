@@ -13,9 +13,9 @@ import java.util.List;
  * @author saintclair
  */
 public class Entrega {
-    private final String ENCERRADO = "ENCERRADO";
-    private final String PENDENTE = "PENDENTE";
-    private final String EM_CURSO = "EM CURSO";
+    public static final String ENCERRADO = "ENCERRADO";
+    public static final String PENDENTE = "PENDENTE";
+    public static final String EM_CURSO = "EM CURSO";
     private int codigo;
     private String status;
     private List <ItemEntrega> listaItens = new ArrayList<ItemEntrega>();

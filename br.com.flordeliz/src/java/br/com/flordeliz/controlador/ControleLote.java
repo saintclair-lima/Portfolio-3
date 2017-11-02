@@ -188,10 +188,13 @@ public class ControleLote extends HttpServlet implements InterfaceControle{
             return resultadoOperacao;
             
         } catch (InsercaoException ex) {
-            System.out.print("Insercao Exception");
+            //System.out.print("Insercao Exception");
+            Logger.getLogger("Insercao Exception", ControleLote.class.getName());
+            
             return LoteProducaoDAO.ERRO_INSERCAO;
         } catch (ParseException ex) {
-            System.out.print("Parse Exception");
+            //System.out.print("Parse Exception");
+            Logger.getLogger("Parse Exception", ControleLote.class.getName());
             return LoteProducaoDAO.ERRO_INSERCAO;
         }
     }

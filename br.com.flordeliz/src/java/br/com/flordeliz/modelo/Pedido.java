@@ -52,7 +52,7 @@ public class Pedido {
             precoTotal += item.getPrecoTotalItem();
         }
         this.precoTotalPedidoBruto = precoTotal;
-        this.setPrecoTotalPedidoLiquido(this.getPrecoTotalPedidoBruto() * this.desconto);
+        this.setPrecoTotalPedidoLiquido(this.getPrecoTotalPedidoBruto() * (1 - this.desconto));
     }
     
     public void inserirItem(ItemPedido itemPedido) throws InsercaoException {

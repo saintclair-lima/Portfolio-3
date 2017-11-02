@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class PedidoDAO extends DAO {
     
-    public void inserir(String usuario, String senha, String endereco, Pedido pedido) {
+    public int inserir(String usuario, String senha, String endereco, Pedido pedido) {
         Connection conexao = ConectaBD.conectarBanco(usuario, senha, endereco);
         Utils.checaNull(conexao, "Connection", Thread.currentThread().getStackTrace()[2].getLineNumber());
         
@@ -46,33 +46,40 @@ public class PedidoDAO extends DAO {
             ps.setInt(2, pedido.getCliente().getCodigo());            
             ps.execute();
             
-            comandoSQL = "INSERT INTO entrega(entrega_codigo, entrega_status, entrega_pedido_codigo) VALUES(NEXTVAL('seq_entrega_codigo'),?,?)";
+            //comandoSQL = "INSERT INTO entrega(entrega_codigo, entrega_status, entrega_pedido_codigo) VALUES(NEXTVAL('seq_entrega_codigo'),?,?)";
+            comandoSQL = "INSERT INTO entrega(entrega_codigo, entrega_status, entrega_pedido_codigo) VALUES(NEXTVAL('seq_entrega_codigo'),?, CURRVAL('seq_pedido_codigo'))";
             ps = conexao.prepareStatement(comandoSQL);
             Utils.checaNull(ps,"PreparedStatement", Thread.currentThread().getStackTrace()[2].getLineNumber());
             
             ps.setString(1, pedido.getEntrega().getStatus());
-            ps.setInt(2, pedido.getCodigo());
+            //ps.setInt(2, pedido.getCodigo());
             ps.execute();
             
-            comandoSQL = "INSERT INTO item_pedido(item_ped_codigo, item_ped_quant, item_ped_pedido_codigo, item_ped_it_est_codigo) VALUES(?,?,?,?)";
+            //comandoSQL = "INSERT INTO item_pedido(item_ped_codigo, item_ped_quant, item_ped_pedido_codigo, item_ped_it_est_codigo) VALUES(?,?,?,?)";
+            comandoSQL = "INSERT INTO item_pedido(item_ped_codigo, item_ped_quant, item_ped_pedido_codigo, item_ped_it_est_codigo) VALUES(?,?,CURRVAL('seq_pedido_codigo'),?)";
             for (ItemPedido item : pedido.getListaItens()){
                 ps = conexao.prepareStatement(comandoSQL);
                 Utils.checaNull(ps,"PreparedStatement", Thread.currentThread().getStackTrace()[2].getLineNumber());
                 
                 ps.setInt(1, item.getCodigo());
                 ps.setInt(2, item.getQuantidade());
-                ps.setInt(3, pedido.getCodigo());
-                ps.setInt(4, item.getItemEstoque().getCodigo());
+                //ps.setInt(3, pedido.getCodigo());
+                //ps.setInt(4, item.getItemEstoque().getCodigo());
+                ps.setInt(3, item.getItemEstoque().getCodigo());
+                ps.execute();
             }
             
-            comandoSQL = "INSERT INTO item_entrega(item_ent_codigo, item_ent_entrega_codigo, item_ent_it_est_codigo) VALUES(?,?,?)";
+            //comandoSQL = "INSERT INTO item_entrega(item_ent_codigo, item_ent_entrega_codigo, item_ent_it_est_codigo) VALUES(?,?,?)";
+            comandoSQL = "INSERT INTO item_entrega(item_ent_codigo, item_ent_entrega_codigo, item_ent_it_est_codigo) VALUES(?,CURRVAL('seq_entrega_codigo'),?)";
             for (ItemEntrega item : pedido.getEntrega().getListaItens()){
                 ps = conexao.prepareStatement(comandoSQL);
                 Utils.checaNull(ps,"PreparedStatement", Thread.currentThread().getStackTrace()[2].getLineNumber());
                 
                 ps.setInt(1, item.getCodigo());
-                ps.setInt(2, pedido.getEntrega().getCodigo());
-                ps.setInt(3, item.getItemEstoque().getCodigo());
+                //ps.setInt(2, pedido.getEntrega().getCodigo());
+                //ps.setInt(3, item.getItemEstoque().getCodigo());
+                ps.setInt(2, item.getItemEstoque().getCodigo());
+                ps.execute();
             }
             
             comandoSQL = "END;";
@@ -80,6 +87,7 @@ public class PedidoDAO extends DAO {
             ps.execute();
             
             conexao.close();
+            return this.SUCESSO;
             
         } catch (SQLException e) {
             String comandoSQL = "ROLLBACK;";
@@ -92,6 +100,7 @@ public class PedidoDAO extends DAO {
             } catch (SQLException ex) {
                 System.err.println("ERRO: falha ao inserir Pedido no banco. Falha ao executar Rollback." + "\r\n " + e.getMessage());
             }
+            return this.ERRO_SQL;
         }
     }
      
@@ -318,7 +327,6 @@ public class PedidoDAO extends DAO {
                         pedido = new Pedido(rs.getInt("pedido_codigo"),
                                             rs.getFloat("pedido_desconto"),
                                             cliente);
-                        System.out.println(pedido.getCodigo());
                     }
                     pedido.inserirItem(itemPedido);
                     pedido.setEntrega(entrega); 
