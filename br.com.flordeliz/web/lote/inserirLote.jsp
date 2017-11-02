@@ -18,7 +18,7 @@
         <script type="text/javascript">
             // Evita que seja feito pedido com quantidade maior que a disponível em estoque
             function validarQuantidade() {
-                var e = document.getElementById("itemEstoque")
+                var e = document.getElementById("itemEstoque");
                 var quantidade = parseInt(e.options[e.selectedIndex].getAttribute("data-quantidade"));
                 console.log(quantidade);
                 document.getElementById("quantidade").max=quantidade;

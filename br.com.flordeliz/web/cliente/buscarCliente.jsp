@@ -19,8 +19,5 @@
             <input type="number" name="cliente_codigo" max="2147483648"/>
             <input type="submit" value="Buscar"/>
         </form>
-        
-        <a href="inserirCliente.jsp">Inserir Cliente</a><br/>
-        <a href="ControleCliente?acao=consultar">Consultar Lista de Clientes</a><br/>
     </body>
 </html>

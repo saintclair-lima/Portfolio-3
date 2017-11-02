@@ -25,7 +25,5 @@
         <p><b>Cor: </b><%=lote.getItemEstoque().getModelo().getCor()%></p>
         
         <a href="ControleLote?acao=excluir&lote_codigo=<%= lote.getCodigo() %>">Excluir Lote de Produção</a><br/>
-        <a href="ControleLote?acao=consultar">Consultar Lista de Lotes de Produção</a><br/>
-        <a href="ControleLote?acao=buscar">Buscar Lote por Código</a>
     </body>
 </html>

@@ -27,8 +27,5 @@
         <a href="ControleCliente?acao=excluir&cliente_codigo=<%= cliente.getCodigo() %>">Excluir Cliente</a> 
         <a href="ControleCliente?acao=atualizar&cliente_codigo=<%= cliente.getCodigo() %>">Atualizar Cliente</a><br/><br/>
         
-        <a href="inserirCliente.jsp">Inserir Cliente</a><br/>
-        <a href="ControleCliente?acao=consultar">Consultar Lista de Clientes</a><br/>
-        <a href="ControleCliente?acao=buscar">Buscar Cliente por Código</a>
     </body>
 </html>

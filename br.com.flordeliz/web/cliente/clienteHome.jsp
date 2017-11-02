@@ -14,8 +14,5 @@
         <jsp:include page="/cabecalho.jsp"/>
         
         <h1>Cliente - Dashboard</h1>
-        <a href="inserirCliente.jsp">Inserir Cliente</a><br/>
-        <a href="ControleCliente?acao=consultar">Consultar Lista de Clientes</a><br/>
-        <a href="ControleCliente?acao=buscar">Buscar Cliente por Código</a>
     </body>
 </html>

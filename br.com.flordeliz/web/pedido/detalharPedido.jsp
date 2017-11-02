@@ -56,7 +56,7 @@
                         <td><%=item.getItemEstoque().getModelo().getColecao()%></td>
                         <td><%=item.getItemEstoque().getModelo().getCor()%></td>
                         <td><%=item.getItemEstoque().getTamanho()%></td>
-                        <td><%=item.getItemEstoque().getQuantidade()%></td>
+                        <td><%=item.getQuantidade()%></td>
                         <td><%=item.getItemEstoque().getModelo().getPrecoCusto()%></td>
                         <td><%= String.format("%.2f", item.getItemEstoque().getPrecoVenda())%></td>
                         <td><%=String.format("%.2f", item.getItemEstoque().getPrecoVenda() * item.getItemEstoque().getQuantidade())%></td>
@@ -66,7 +66,5 @@
         </table>
         
         <a href="ControlePedido?acao=excluir&pedido_codigo=<%= pedido.getCodigo() %>">Excluir Pedido</a><br/>
-        <a href="ControlePedido?acao=consultar">Consultar Lista de Pedidos</a><br/>
-        <a href="ControlePedido?acao=buscar">Buscar Pedido por Código</a>
     </body>
 </html>

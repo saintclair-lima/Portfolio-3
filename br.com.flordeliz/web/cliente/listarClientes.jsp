@@ -16,8 +16,6 @@
         <jsp:include page="/cabecalho.jsp"/>
         
         <h1>Lista de Clientes Registrados</h1>
-        <a href="ControleCliente?acao=incluir">Inserir Cliente</a><br/>
-        <a href="ControleCliente?acao=buscar">Buscar Cliente por Código</a>
         
         <table border="1">
             <tr>

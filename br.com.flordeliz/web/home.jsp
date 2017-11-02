@@ -12,7 +12,5 @@
     
         <jsp:include page="cabecalho.jsp"/>
         
-        <a href="cliente/clienteHome.jsp">Gerenciar Clientes</a>
-        <a href="pedido/pedidoHome.jsp">Gerenciar Pedidos</a>
     </body>
 </html>

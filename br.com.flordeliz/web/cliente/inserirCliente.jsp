@@ -31,8 +31,5 @@
             <input type="submit" value="Incluir Cliente"/> 
             <input type="button" value ="Cancelar" onClick="window.location='<%=request.getContextPath() %>/home.jsp';"/><br/>
         </form>
-        
-        <a href="ControleCliente?acao=consultar">Listar Clientes</a><br/>
-        <a href="../index.xhtml">Voltar</a>
     </body>
 </html>

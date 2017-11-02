@@ -16,8 +16,6 @@
         <jsp:include page="/cabecalho.jsp"/>
         
         <h1>Lista de Lotes Registrados</h1>
-        <a href="ControleLote?acao=incluir">Inserir Lote</a><br/>
-        <a href="ControleLote?acao=buscar">Buscar Lote por Código</a>
         
         <table border="1">
             <tr>
