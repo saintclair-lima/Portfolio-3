@@ -44,7 +44,8 @@
                 <th>Quantidade</th>
                 <th>Valor Custo</th>
                 <th>Preco Venda</th>
-                <th>Total Item</th>
+                <th>Total Bruto do Item</th>
+                <th>Total com Desconto do Item</th>
             </tr>
             <%
                 List<ItemPedido> lista = pedido.getListaItens();
@@ -59,7 +60,8 @@
                         <td><%=item.getQuantidade()%></td>
                         <td><%=item.getItemEstoque().getModelo().getPrecoCusto()%></td>
                         <td><%= String.format("%.2f", item.getItemEstoque().getPrecoVenda())%></td>
-                        <td><%=String.format("%.2f", item.getItemEstoque().getPrecoVenda() * item.getItemEstoque().getQuantidade())%></td>
+                        <td><%=String.format("%.2f", item.getItemEstoque().getPrecoVenda() * item.getQuantidade())%></td>
+                        <td><%=String.format("%.2f", (item.getItemEstoque().getPrecoVenda() * item.getQuantidade()) * (1 - pedido.getDesconto()))%></td>
                     </tr>
                 <%}
             %>
