@@ -1,6 +1,4 @@
-drop database liz;
-create database liz;
-\c liz;
+
 create table modelo_calcado (modelo_codigo int not null constraint modelo_pk primary key,
                              modelo_nome varchar(25) not null,
                              modelo_colecao varchar(25) not null,
@@ -69,6 +67,20 @@ create or replace function fn_registrar_entrada_estoque()
     after insert on lote_producao
     for each row execute procedure fn_registrar_entrada_estoque();
 
+create or replace function fn_cancelar_entrada_estoque()
+  returns trigger as'
+  begin
+  update item_estoque set item_estoque_quantidade = item_estoque.item_estoque_quantidade - old.lote_quantidade
+  where item_estoque.item_estoque_codigo = old.lote_item_est_codigo;
+  return old;
+  end;
+  '
+  language plpgsql;
+
+  create trigger tg_cancelar_entrada_estoque
+    after delete on lote_producao
+    for each row execute procedure fn_cancelar_entrada_estoque();
+
 create or replace function fn_registrar_saida_estoque()
   returns trigger as'
   begin
@@ -82,6 +94,20 @@ create or replace function fn_registrar_saida_estoque()
   create trigger tg_registrar_saida_estoque
     after insert on item_pedido
     for each row execute procedure fn_registrar_saida_estoque();
+
+create or replace function fn_cancelar_saida_estoque()
+  returns trigger as'
+  begin
+  update item_estoque set item_estoque_quantidade = item_estoque.item_estoque_quantidade + old.item_ped_quant
+  where item_estoque.item_estoque_codigo = old.item_ped_it_est_codigo;
+  return old;
+  end;
+  '
+  language plpgsql;
+
+  create trigger tg_cancelar_saida_estoque
+    after delete on item_pedido
+    for each row execute procedure fn_cancelar_saida_estoque();
 
 create sequence seq_modelo_calcado_codigo increment 1 minvalue 1 maxvalue 9223372036854775807 start 21 cache 1;
 create sequence seq_lote_producao_codigo increment 1 minvalue 1 maxvalue 9223372036854775807 start 442 cache 1;
