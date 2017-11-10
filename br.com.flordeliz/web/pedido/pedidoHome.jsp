@@ -1,9 +1,3 @@
-<%-- 
-    Document   : pedidoHome
-    Created on : 18/10/2017, 00:53:00
-    Author     : Samara C. Lima
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

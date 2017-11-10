@@ -1,9 +1,3 @@
-<%-- 
-    Document   : listarPedidos
-    Created on : 17/10/2017, 15:31:46
-    Author     : saintclair
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="br.com.flordeliz.modelo.Pedido"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -56,7 +50,7 @@
                     </td>
                     <td>Alterar</td>
                     <td>
-                        <a href="ControlePedido?acao=excluir&pedido_codigo=<%= pedido.getCodigo() %>">
+                        <a href="ControlePedido?acao=excluir&pedido_codigo=<%= pedido.getCodigo() %>" onclick="return confirm('Deseja realmente realizar a exclusão do registro?')">
                             Excluir
                         </a>
                     </td>

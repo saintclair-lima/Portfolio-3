@@ -1,9 +1,3 @@
-<%-- 
-    Document   : detalharPedido
-    Created on : 17/10/2017, 15:59:16
-    Author     : saintclair
---%>
-
 <%@page import="br.com.flordeliz.modelo.ItemPedido"%>
 <%@page import="br.com.flordeliz.modelo.Pedido"%>
 <%@page import="java.util.List"%>
@@ -66,7 +60,9 @@
                 <%}
             %>
         </table>
-        
-        <a href="ControlePedido?acao=excluir&pedido_codigo=<%= pedido.getCodigo() %>">Excluir Pedido</a><br/>
+        <br/>
+        <a class="bot_excluir" href="ControlePedido?acao=excluir&pedido_codigo=<%= pedido.getCodigo() %>" onclick="return confirm('Deseja realmente realizar a exclusão do registro?')">
+            Excluir Pedido
+        </a><br/>
     </body>
 </html>

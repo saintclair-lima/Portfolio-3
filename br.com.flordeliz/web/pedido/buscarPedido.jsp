@@ -1,9 +1,3 @@
-<%-- 
-    Document   : buscarPedido
-    Created on : 18/10/2017, 02:53:19
-    Author     : Samara C. Lima
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +12,7 @@
             <input type="hidden" name="acao" value="detalhar"/>
             <label for="pedido_codigo"><b>Código do Pedido: </b></label>
             <input type="number" name="pedido_codigo" max="2147483648"/>
-            <input type="submit" value="Buscar"/>
+            <input class="bot_envio" type="submit" value="Buscar"/>
         </form>
     </body>
 </html>

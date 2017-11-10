@@ -1,9 +1,3 @@
-<%-- 
-    Document   : inserirLote
-    Created on : 18/10/2017, 15:06:01
-    Author     : saintclair
---%>
-
 <%@page import="br.com.flordeliz.modelo.Cliente"%>
 <%@page import="br.com.flordeliz.modelo.ItemEstoque"%>
 <%@page import="java.util.List"%>
@@ -157,7 +151,8 @@
             <input type="number" min="0" max="1" step="0.01" placeholder="0.00" value="0.00" name="desconto" id="desconto"/>
             <br/>
             <br/>
-            <input type="submit">
+            <input class="bot_envio" type="submit">
+            <input class="bot_cancela" type="button" value ="Cancelar" onClick="window.location='<%=request.getContextPath() %>/home.jsp';"/><br/>
         </form>
         
     </body>
