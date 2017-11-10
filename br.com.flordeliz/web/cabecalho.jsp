@@ -1,67 +1,13 @@
 
-        <style>
-            .top-bar{
-                width:100%;
-                text-align: center;
-                padding: 25px;
-                background-color: #f90000;
-            }
-            
-            .top-bar p{
-                font-size: 25px;
-                font-family: Arial;
-                text-decoration: none;
-            }
-            .dropbtn {
-                background-color: #4CAF50;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-                font-family: Arial;
-                text-decoration: none;
-            }
-            
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
-            
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-            
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-            
-            .dropdown-content a:hover {background-color: #f1f1f1}
-            
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-            
-            .dropdown:hover .dropbtn {
-                background-color: #3e8e41;
-            }
-        </style>
-        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/estiloPagina.css">
+        
         
     </head>
     <body>
-        <div class="top-bar">FLOR DE LIZ</div>
+        <div class="top-bar shadow text3">FLOR DE LIZ</div>
+        <div class="script"><span>Shoe Shop</span></div>
         <div class="dropdown">
-<!--            <button class="dropbtn"><div><a href="<%=request.getContextPath() %>/home.jsp">Home</a></div></button>-->
             <a href="<%=request.getContextPath() %>/home.jsp" class="dropbtn">Home</a>
         </div>
         <div class="dropdown">
