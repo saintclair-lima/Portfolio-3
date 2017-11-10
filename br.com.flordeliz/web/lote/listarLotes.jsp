@@ -1,9 +1,3 @@
-<%-- 
-    Document   : listarLotes
-    Created on : 18/10/2017, 15:05:18
-    Author     : saintclair
---%>
-
 <%@page import="br.com.flordeliz.modelo.LoteProducao"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,7 +41,7 @@
                     </td>
                     <td>Atualizar</td>
                     <td>
-                        <a href="ControleLote?acao=excluir&lote_codigo=<%= lote.getCodigo() %>">
+                        <a href="ControleLote?acao=excluir&lote_codigo=<%= lote.getCodigo() %>" onclick="return confirm('Deseja realmente realizar a exclusão do registro?')">
                             Excluir
                         </a>
                     </td>

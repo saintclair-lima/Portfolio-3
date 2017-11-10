@@ -24,6 +24,8 @@
         <p><b>Quantidade: </b><%=lote.getQuantidade()%></p>
         <p><b>Cor: </b><%=lote.getItemEstoque().getModelo().getCor()%></p>
         
-        <a href="ControleLote?acao=excluir&lote_codigo=<%= lote.getCodigo() %>">Excluir Lote de Produção</a><br/>
+        <a class="bot_excluir" href="ControleLote?acao=excluir&lote_codigo=<%= lote.getCodigo() %>" onclick="return confirm('Deseja realmente realizar a exclusão do registro?')">
+            Excluir Lote de Produção
+        </a><br/>
     </body>
 </html>
