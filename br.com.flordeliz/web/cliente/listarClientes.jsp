@@ -1,9 +1,3 @@
-<%-- 
-    Document   : listarClientes
-    Created on : 14/10/2017, 01:42:32
-    Author     : Samara C. Lima
---%>
-
 <%@page import="br.com.flordeliz.modelo.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,7 +43,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href="ControleCliente?acao=excluir&cliente_codigo=<%= cliente.getCodigo() %>">
+                            <a href="ControleCliente?acao=excluir&cliente_codigo=<%= cliente.getCodigo() %>" onclick="return confirm('Deseja realmente realizar a exclusão do registro?')">
                                 Excluir
                             </a>
                         </td>

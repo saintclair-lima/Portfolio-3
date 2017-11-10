@@ -1,8 +1,3 @@
-<%-- 
-    Document   : buscarCliente
-    Created on : 17/10/2017, 13:54:49
-    Author     : saintclair
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +12,7 @@
             <input type="hidden" name="acao" value="detalhar"/>
             <label for="cliente_codigo"><b>Código do Cliente: </b></label>
             <input type="number" name="cliente_codigo" max="2147483648"/>
-            <input type="submit" value="Buscar"/>
+            <input class="bot_envio" type="submit" value="Buscar"/>
         </form>
     </body>
 </html>

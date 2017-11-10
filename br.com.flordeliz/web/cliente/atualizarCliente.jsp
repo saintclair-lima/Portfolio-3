@@ -1,9 +1,3 @@
-<%-- 
-    Document   : atualizarCliente
-    Created on : 16/10/2017, 05:35:19
-    Author     : Samara C. Lima
---%>
-
 <%@page import="br.com.flordeliz.modelo.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +20,7 @@
             <p><b>Número do CPF: </b><input type="text" name="cliente_cpf" value="<%= cliente.getCpf() %>"/></p>
             <p><b>Número do CNPJ da Loja: </b><input type="text" name="cliente_cnpj" value="<%= cliente.getCnpj() %>"/></p>
 
-            <input type="submit" value="Alterar Dados"/><br/><br/>
+            <input class="bot_envio" type="submit" value="Alterar Dados"/><br/><br/>
         </form>
     </body>
 </html>
