@@ -1,0 +1,275 @@
+@import "compass/css3";
+
+$breakpoint-alpha: 480px;
+
+table {
+  margin: 1em 0;
+  min-width: 300px;
+  
+  tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    display: none;
+  }
+  
+  td {
+    display: block; 
+    
+    &:first-child {
+      padding-top: .5em;
+    }
+    &:last-child {
+      padding-bottom: .5em;
+    }
+
+    &:before {
+      content: attr(data-th)": ";
+      font-weight: bold;
+
+      
+      width: 6.5em;
+      display: inline-block;
+      
+      
+      @media (min-width: $breakpoint-alpha) {
+        display: none;
+      }
+    }
+  }
+  
+  th, td {
+    text-align: left;
+    
+    @media (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;
+      
+      &:first-child {
+        padding-left: 0;
+      }
+      
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+  }
+  
+  
+}
+
+
+// presentational styling
+
+@import 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #eee;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: #aaa;
+}
+
+table {
+  background: #444;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  tr {
+    border-color: lighten(#34495E, 10%);
+  }
+  th, td {
+    margin: .5em 1em;
+    @media (min-width: $breakpoint-alpha) { 
+      padding: 1em !important; 
+    }
+  }
+  th, td:before {
+    color: #dd5;
+  }
+}
+
+
+
+
+
+
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Arvo:700);
+    @import url(https://fonts.googleapis.com/css?family=Seaweed+Script);
+    .top-bar{
+        width:100%;
+        text-align: center;
+        padding: 25px;
+        background-color: #111;
+    }
+    
+    a:link {
+    color: #4CAF50;
+}
+
+    /* visited link */
+    a:visited {
+        color: #4CAF50;
+    }
+
+    /* mouse over link */
+    a:hover {
+        color: yellow;
+    }
+
+    /* selected link */
+    a:active {
+        color: #4CAF50;
+    }
+
+    .top-bar p{
+        font-size: 25px;
+        font-family: Arial;
+        text-decoration: none;
+    }
+    
+    .bot_detalhar, .bot_envio {
+        border : #4CAF50;
+        background-color: #4CAF50;
+        color: black;
+/*        border: 2px solid #4CAF50;*/
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 20px;
+    }
+    
+    
+
+    .bot_excluir, .bot_cancela {
+        display: inline-block;
+        background-color: #f44336;
+        border: #f44336;
+        color: #FFFFFF;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin-left: 20px;
+        opacity: 0.9;
+    }
+
+    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        font-family: Arial;
+        text-decoration: none;
+    }
+    
+    a.dropbtn, a.bot_detalhar, a.bot_excluir{color:white}
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #f1f1f1}
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+    body {
+        background-color: #222;
+        font-family: Arial;
+        color: white;
+    }
+    .plate {
+        width: 410px;
+        margin: 10% auto;
+    }
+    .shadow {
+        color: #fff;
+        font-family: Arvo;
+        font-weight: bold;
+        text-shadow:
+            -3px -3px 0 #222,
+            3px -3px 0 #222,
+            -3px 3px 0 #222,
+            3px 3px 0 #222,
+            4px 4px 0 #fff,
+            5px 5px 0 #fff,
+            6px 6px 0 #fff,
+            7px 7px 0 #fff;
+        line-height: 0.8em;
+        letter-spacing: 0.1em;
+        transform: scaleY(0.7);
+        -webkit-transform: scaleY(0.7);
+        -moz-transform: scaleY(0.7);
+        margin:0;
+        text-align: center;
+    }
+    .script {
+        font-family: "Seaweed Script";
+        color: #fff;
+        text-align: center;
+        font-size: 40px;
+        position: relative;
+        margin:0;
+    }
+    .script span {
+        background-color: #222;
+        padding: 0 0.3em;
+    }
+    .script:before {
+        content:"";
+        display: block;
+        position: absolute;
+        z-index:-1;
+        top: 50%;
+        width: 100%;
+        border-bottom: 3px solid #fff;
+    }
+    .text1 {
+        font-size: 60px;
+    }
+    .text2 {
+        font-size: 169px;
+    }
+    .text3 {
+        font-size: 100px;
+    }
