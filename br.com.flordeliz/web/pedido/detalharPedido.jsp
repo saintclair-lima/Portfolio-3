@@ -14,7 +14,7 @@
         <%Pedido pedido = (Pedido) request.getAttribute("pedido");%>
         <p><b>Código: </b> <%=pedido.getCodigo()%> </p>
         <p><b>Solicitante: </b>
-            <a href="../cliente/ControleCliente?acao=buscar&cliente_codigo=<%= pedido.getCliente().getCodigo() %>">
+            <a href="../cliente/ControleCliente?acao=detalhar&cliente_codigo=<%= pedido.getCliente().getCodigo() %>">
                 <%=pedido.getCliente().getNome()%>
             </a>
         </p>
